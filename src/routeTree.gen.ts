@@ -16,6 +16,7 @@ import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as DoctorRouteImport } from './routes/doctor'
 import { Route as EmergencyRouteImport } from './routes/emergency'
 import { Route as HealthRouteImport } from './routes/health'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as MedicinesRouteImport } from './routes/medicines'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ProfileRouteImport } from './routes/profile'
@@ -57,6 +58,11 @@ const HealthRoute = HealthRouteImport.update({
   path: '/health',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MedicinesRoute = MedicinesRouteImport.update({
   id: '/medicines',
   path: '/medicines',
@@ -91,6 +97,7 @@ export interface FileRoutesByFullPath {
   '/doctor': typeof DoctorRoute
   '/emergency': typeof EmergencyRoute
   '/health': typeof HealthRoute
+  '/login': typeof LoginRoute
   '/medicines': typeof MedicinesRoute
   '/privacy': typeof PrivacyRoute
   '/profile': typeof ProfileRoute
@@ -105,6 +112,7 @@ export interface FileRoutesByTo {
   '/doctor': typeof DoctorRoute
   '/emergency': typeof EmergencyRoute
   '/health': typeof HealthRoute
+  '/login': typeof LoginRoute
   '/medicines': typeof MedicinesRoute
   '/privacy': typeof PrivacyRoute
   '/profile': typeof ProfileRoute
@@ -120,6 +128,7 @@ export interface FileRoutesById {
   '/doctor': typeof DoctorRoute
   '/emergency': typeof EmergencyRoute
   '/health': typeof HealthRoute
+  '/login': typeof LoginRoute
   '/medicines': typeof MedicinesRoute
   '/privacy': typeof PrivacyRoute
   '/profile': typeof ProfileRoute
@@ -136,6 +145,7 @@ export interface FileRouteTypes {
     | '/doctor'
     | '/emergency'
     | '/health'
+    | '/login'
     | '/medicines'
     | '/privacy'
     | '/profile'
@@ -150,6 +160,7 @@ export interface FileRouteTypes {
     | '/doctor'
     | '/emergency'
     | '/health'
+    | '/login'
     | '/medicines'
     | '/privacy'
     | '/profile'
@@ -164,6 +175,7 @@ export interface FileRouteTypes {
     | '/doctor'
     | '/emergency'
     | '/health'
+    | '/login'
     | '/medicines'
     | '/privacy'
     | '/profile'
@@ -179,6 +191,7 @@ export interface RootRouteChildren {
   DoctorRoute: typeof DoctorRoute
   EmergencyRoute: typeof EmergencyRoute
   HealthRoute: typeof HealthRoute
+  LoginRoute: typeof LoginRoute
   MedicinesRoute: typeof MedicinesRoute
   PrivacyRoute: typeof PrivacyRoute
   ProfileRoute: typeof ProfileRoute
@@ -237,6 +250,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HealthRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/medicines': {
       id: '/medicines'
       path: '/medicines'
@@ -283,6 +303,7 @@ const rootRouteChildren: RootRouteChildren = {
   DoctorRoute: DoctorRoute,
   EmergencyRoute: EmergencyRoute,
   HealthRoute: HealthRoute,
+  LoginRoute: LoginRoute,
   MedicinesRoute: MedicinesRoute,
   PrivacyRoute: PrivacyRoute,
   ProfileRoute: ProfileRoute,
