@@ -179,9 +179,10 @@ export function analyzeSymptoms(text: string, severity: number, duration: string
   }
 
   const picked: Concern[] = [];
-  const add = (key: keyof typeof CONCERN_LIBRARY, matching: string[]) => {
-    if (picked.length >= 4) return;
-    picked.push({ ...CONCERN_LIBRARY[key], matching });
+  const add = (key: string, matching: string[]) => {
+    const base = CONCERN_LIBRARY[key];
+    if (!base || picked.length >= 4) return;
+    picked.push({ ...base, matching });
   };
   const has = (s: string) => signals.symptoms.includes(s);
 
