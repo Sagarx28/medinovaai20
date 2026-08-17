@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AssistantRouteImport } from './routes/assistant'
 import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as DoctorRouteImport } from './routes/doctor'
 import { Route as HealthRouteImport } from './routes/health'
 import { Route as MedicinesRouteImport } from './routes/medicines'
 import { Route as ReportsRouteImport } from './routes/reports'
@@ -30,6 +31,11 @@ const AssistantRoute = AssistantRouteImport.update({
 const DashboardRoute = DashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DoctorRoute = DoctorRouteImport.update({
+  id: '/doctor',
+  path: '/doctor',
   getParentRoute: () => rootRouteImport,
 } as any)
 const HealthRoute = HealthRouteImport.update({
@@ -57,6 +63,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/assistant': typeof AssistantRoute
   '/dashboard': typeof DashboardRoute
+  '/doctor': typeof DoctorRoute
   '/health': typeof HealthRoute
   '/medicines': typeof MedicinesRoute
   '/reports': typeof ReportsRoute
@@ -66,6 +73,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/assistant': typeof AssistantRoute
   '/dashboard': typeof DashboardRoute
+  '/doctor': typeof DoctorRoute
   '/health': typeof HealthRoute
   '/medicines': typeof MedicinesRoute
   '/reports': typeof ReportsRoute
@@ -76,6 +84,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/assistant': typeof AssistantRoute
   '/dashboard': typeof DashboardRoute
+  '/doctor': typeof DoctorRoute
   '/health': typeof HealthRoute
   '/medicines': typeof MedicinesRoute
   '/reports': typeof ReportsRoute
@@ -87,6 +96,7 @@ export interface FileRouteTypes {
     | '/'
     | '/assistant'
     | '/dashboard'
+    | '/doctor'
     | '/health'
     | '/medicines'
     | '/reports'
@@ -96,6 +106,7 @@ export interface FileRouteTypes {
     | '/'
     | '/assistant'
     | '/dashboard'
+    | '/doctor'
     | '/health'
     | '/medicines'
     | '/reports'
@@ -105,6 +116,7 @@ export interface FileRouteTypes {
     | '/'
     | '/assistant'
     | '/dashboard'
+    | '/doctor'
     | '/health'
     | '/medicines'
     | '/reports'
@@ -115,6 +127,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AssistantRoute: typeof AssistantRoute
   DashboardRoute: typeof DashboardRoute
+  DoctorRoute: typeof DoctorRoute
   HealthRoute: typeof HealthRoute
   MedicinesRoute: typeof MedicinesRoute
   ReportsRoute: typeof ReportsRoute
@@ -142,6 +155,13 @@ declare module '@tanstack/react-router' {
       path: '/dashboard'
       fullPath: '/dashboard'
       preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/doctor': {
+      id: '/doctor'
+      path: '/doctor'
+      fullPath: '/doctor'
+      preLoaderRoute: typeof DoctorRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/health': {
@@ -179,6 +199,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AssistantRoute: AssistantRoute,
   DashboardRoute: DashboardRoute,
+  DoctorRoute: DoctorRoute,
   HealthRoute: HealthRoute,
   MedicinesRoute: MedicinesRoute,
   ReportsRoute: ReportsRoute,
