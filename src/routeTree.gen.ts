@@ -21,6 +21,7 @@ import { Route as MedicinesRouteImport } from './routes/medicines'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as ReportsRouteImport } from './routes/reports'
+import { Route as SignupRouteImport } from './routes/signup'
 import { Route as SymptomCheckerRouteImport } from './routes/symptom-checker'
 
 const IndexRoute = IndexRouteImport.update({
@@ -83,6 +84,11 @@ const ReportsRoute = ReportsRouteImport.update({
   path: '/reports',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SignupRoute = SignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SymptomCheckerRoute = SymptomCheckerRouteImport.update({
   id: '/symptom-checker',
   path: '/symptom-checker',
@@ -102,6 +108,7 @@ export interface FileRoutesByFullPath {
   '/privacy': typeof PrivacyRoute
   '/profile': typeof ProfileRoute
   '/reports': typeof ReportsRoute
+  '/signup': typeof SignupRoute
   '/symptom-checker': typeof SymptomCheckerRoute
 }
 export interface FileRoutesByTo {
@@ -117,6 +124,7 @@ export interface FileRoutesByTo {
   '/privacy': typeof PrivacyRoute
   '/profile': typeof ProfileRoute
   '/reports': typeof ReportsRoute
+  '/signup': typeof SignupRoute
   '/symptom-checker': typeof SymptomCheckerRoute
 }
 export interface FileRoutesById {
@@ -133,6 +141,7 @@ export interface FileRoutesById {
   '/privacy': typeof PrivacyRoute
   '/profile': typeof ProfileRoute
   '/reports': typeof ReportsRoute
+  '/signup': typeof SignupRoute
   '/symptom-checker': typeof SymptomCheckerRoute
 }
 export interface FileRouteTypes {
@@ -150,6 +159,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/profile'
     | '/reports'
+    | '/signup'
     | '/symptom-checker'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -165,6 +175,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/profile'
     | '/reports'
+    | '/signup'
     | '/symptom-checker'
   id:
     | '__root__'
@@ -180,6 +191,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/profile'
     | '/reports'
+    | '/signup'
     | '/symptom-checker'
   fileRoutesById: FileRoutesById
 }
@@ -196,6 +208,7 @@ export interface RootRouteChildren {
   PrivacyRoute: typeof PrivacyRoute
   ProfileRoute: typeof ProfileRoute
   ReportsRoute: typeof ReportsRoute
+  SignupRoute: typeof SignupRoute
   SymptomCheckerRoute: typeof SymptomCheckerRoute
 }
 
@@ -285,6 +298,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ReportsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/signup': {
+      id: '/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof SignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/symptom-checker': {
       id: '/symptom-checker'
       path: '/symptom-checker'
@@ -308,6 +328,7 @@ const rootRouteChildren: RootRouteChildren = {
   PrivacyRoute: PrivacyRoute,
   ProfileRoute: ProfileRoute,
   ReportsRoute: ReportsRoute,
+  SignupRoute: SignupRoute,
   SymptomCheckerRoute: SymptomCheckerRoute,
 }
 export const routeTree = rootRouteImport
